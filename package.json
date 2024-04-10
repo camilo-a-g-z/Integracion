@@ -1,0 +1,22 @@
+{
+  "name": "integracion",
+  "version": "1.0.0",
+  "description": "Este proyecto permitira la integracion necesaria para el proyecto de prestamos de recursos de la materia de seminario de software",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilo-a-g-z/Interacion.git"
+  },
+  "author": "camilo-a-g-z",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilo-a-g-z/Interacion/issues"
+  },
+  "homepage": "https://github.com/camilo-a-g-z/Interacion#readme",
+  "dependencies": {
+    "express": "4.19.2"
+  }
+}
