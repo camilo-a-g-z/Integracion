@@ -1,4 +1,4 @@
-import { db } from "../config/conf_firebase";
+import { db } from "../config/conf_firebase.js";
 
 export class UserModel {
     static async create({ email, password }) {

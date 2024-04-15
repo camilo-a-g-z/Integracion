@@ -1,6 +1,7 @@
 import express, { json } from "express";
 //import { corsMiddleware } from "./middlewares/cors.js";
-
+//import { UserModel } from "./models/usuarios.js";
+import { db } from "./config/conf_firebase.js";
 export const createApp = () => {
     const app = express();
 
@@ -9,7 +10,7 @@ export const createApp = () => {
     app.disable("x-powered-by");
 
     app.get("/", (req, res) => {
-        res.send("Hello World");
+        
     });
 
     const PORT = process.env.PORT || 3000;
