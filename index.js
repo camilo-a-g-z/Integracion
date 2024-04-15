@@ -1,11 +1,22 @@
-import express from "express";
+import express, { json } from "express";
+//import { corsMiddleware } from "./middlewares/cors.js";
 
-const app = express();
+export const createApp = () => {
+    const app = express();
 
-app.listen(8000, (req, res) => {
-  console.log("Server started on http://localhost:8000");
-});
+    app.use(json());
+    //app.use(corsMiddleware);
+    app.disable("x-powered-by");
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+    app.get("/", (req, res) => {
+        res.send("Hello World");
+    });
+
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, () => {
+        console.log(`Server started on http://localhost:${PORT}`);
+    });
+
+    return app;
+}
