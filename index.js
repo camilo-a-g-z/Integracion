@@ -3,6 +3,7 @@ import express, { json } from "express";
 //import { UserModel } from "./models/usuarios.js";
 import { db } from "./config/conf_firebase.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import { UserModel } from "./models/usuarios.js";
 export const createApp = () => {
   const app = express();
 
@@ -10,7 +11,10 @@ export const createApp = () => {
   //app.use(corsMiddleware);
   app.disable("x-powered-by");
 
-  app.get("/", async (req, res) => {});
+  app.get("/", async (req, res) => {
+    const user = await UserModel.getByEmail("camilo@gmail.com");
+    res.json(user);
+  });
 
   const PORT = process.env.PORT || 3000;
 
@@ -20,9 +24,4 @@ export const createApp = () => {
 
   return app;
 };
-/*
-const user = await getDocs(collection(db, "Usuario"));
-        res.json(user.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-        })));  */
+
