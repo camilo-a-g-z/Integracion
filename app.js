@@ -1,5 +1,5 @@
 import { createApp } from "./index.js";
-//import { UserModel } from "./models/usuarios";
+import { Models } from "./models/models.js";
 
-createApp();
+createApp({model: Models});
 
