@@ -1,2 +1,5 @@
 ###Este archivo permite realizar pruebas de la API de integracion
+
+GET http://localhost:3000/reservas
+
 GET http://localhost:3000/users

@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 export class ReservaModel {
     static async create({ dia, horario, idReserva }) {
-        const reserva = await db.collection("reserva").add({
+        const reserva = await db.collection("Reserva").add({
             dia,
             horario,
             idReserva
@@ -22,7 +22,7 @@ export class ReservaModel {
 
     static async getAll() {
         const dataReservas = [];
-        const reservas = await getDocs(collection(db, "reserva")).then(
+        const reservas = await getDocs(collection(db, "Reserva")).then(
             (querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     dataReservas.push(doc.data());

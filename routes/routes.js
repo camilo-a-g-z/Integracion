@@ -12,5 +12,21 @@ export const routes = ({ model } = {}) => {
         const users = await controller.getAllUsers();
         res.json(users);
     });
+    router.get("/reservas", async (req, res) => {
+        const reservas = await controller.getAllReservas();
+        res.json(reservas);
+    });
+    router.get("/prestamos", async (req, res) => {
+        const prestamos = await controller.getAllPrestamos();
+        res.json(prestamos);
+    });
+    router.get("/tipoRecursos", async (req, res) => {
+        const tipoRecursos = await controller.getAllTipoRecursos();
+        res.json(tipoRecursos);
+    });
+    router.get("/unidades", async (req, res) => {
+        const unidades = await controller.getAllUnidades();
+        res.json(unidades);
+    });
     return router;
 }

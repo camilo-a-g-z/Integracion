@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 export class RecursoModel {
     static async create({ caracteristicas, idRecurso, nombre, prestado }) {
-        const recurso = await db.collection("recurso").add({
+        const recurso = await db.collection("Recurso").add({
             caracteristicas,
             idRecurso,
             nombre,
@@ -23,7 +23,7 @@ export class RecursoModel {
 
     static async getAll() {
         const dataRecursos = [];
-        const recursos = await getDocs(collection(db, "recurso")).then(
+        const recursos = await getDocs(collection(db, "Recurso")).then(
             (querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     dataRecursos.push(doc.data());

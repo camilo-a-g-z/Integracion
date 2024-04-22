@@ -22,7 +22,7 @@ export class UnidadModel {
     nombre,
     tMinPrestamo,
   }) {
-    const unidad = await db.collection("unidad").add({
+    const unidad = await db.collection("Unidad").add({
       horEntSem,
       horFinSem,
       idUnidad,
@@ -35,7 +35,7 @@ export class UnidadModel {
 
   static async getAll() {
     const dataUnidades = [];
-    const unidades = await getDocs(collection(db, "unidad")).then(
+    const unidades = await getDocs(collection(db, "Unidad")).then(
       (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           dataUnidades.push(doc.data());

@@ -9,7 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 export class PrestamoModel {
     static async create({ entregaATiempo, horEntrega, idDevolucion }) {
-        const prestamo = await db.collection("prestamo").add({
+        const prestamo = await db.collection("Prestamo").add({
             entregaATiempo,
             horEntrega,
             idDevolucion
@@ -20,7 +20,7 @@ export class PrestamoModel {
 
     static async getAll() {
         const dataPrestamos = [];
-        const prestamos = await getDocs(collection(db, "prestamo")).then(
+        const prestamos = await getDocs(collection(db, "Prestamo")).then(
             (querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     dataPrestamos.push(doc.data());

@@ -68,4 +68,7 @@ export class Controller {
     async getAllUsers() {
         return await this.models.getUsuarioModel().getAll();
     }
+    async getAllTipoRecursos() {
+        return await this.models.getTipoRecursoModel().getAll();
+    }
 }

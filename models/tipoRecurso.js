@@ -26,7 +26,7 @@ export class TipoRecursoModel {
     idTRecurso,
     nombre,
   }) {
-    const tipoRecurso = await db.collection("tipoRecurso").add({
+    const tipoRecurso = await db.collection("TipoRecurso").add({
       caracteristicas,
       descripcion,
       horEntSem,
@@ -40,7 +40,7 @@ export class TipoRecursoModel {
 
   static async getAll() {
     const dataTipoRecursos = [];
-    const tipoRecursos = await getDocs(collection(db, "tipoRecurso")).then(
+    const tipoRecursos = await getDocs(collection(db, "TipoRecurso")).then(
       (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           dataTipoRecursos.push(doc.data());
