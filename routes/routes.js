@@ -110,8 +110,8 @@ export const routes = ({ model } = {}) => {
         const recurso = await controller.createRecursoIntegracion({ idRecurso, nombre, caracteristicas, idTRecurso })
         res.status(200).json({ Registro:"Ok"});
     });
-    router.get("/getIntegracion/:idRecurso", async (req,res) => {
-      const recurso = await controller.getRecursoById(req.params.idRecurso)
+    router.get("/integracion/:idRecurso", async (req,res) => {
+      const recurso = await controller.integracionConsultaID(req.params.idRecurso)
       res.json(recurso)
     })
     return router;

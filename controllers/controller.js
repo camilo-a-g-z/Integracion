@@ -79,6 +79,21 @@ export class Controller {
     return respuesta;
   }
 
+  async integracionConsultaID(id) {
+    let recurso = await this.getRecursoById(id);
+    let tipoRecurso = await this.getTipoRecuso(recurso.idTRecurso);
+    let respuesta = {
+      nombre: recurso.nombre,
+      idRecurso: recurso.idRecurso,
+      descripcion: tipoRecurso.descripcion,
+      nombreTipo: tipoRecurso.nombre,
+      horEntSem: tipoRecurso.horEntSem,
+      horFinSem: tipoRecurso.horFinSem,
+    };
+    console.log(respuesta);
+    return respuesta;
+  }
+
   async getTipoRecuso(id) {
     return await this.models.getTipoRecursoModel().getById(id);
   }
