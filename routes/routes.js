@@ -61,6 +61,10 @@ import { Controller } from "../controllers/controller.js";
 export const routes = ({ model } = {}) => {
     const router = Router();
     const controller = new Controller({model});
+    router.get("/integracion", async (req, res) => {
+        const integracion = await controller.integracionConsulta();
+        res.json(integracion);
+    });
     router.get("/recursos", async (req, res) => {
         const recursos = await controller.getAllRecursos();
         res.json(recursos);

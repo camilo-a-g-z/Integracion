@@ -61,6 +61,28 @@ export class Controller {
     this.models = new Models();
   }
 
+  async integracionConsulta() {
+    let allRecusrso = await this.getAllRecursos();
+    let respuesta = {};
+    for (const recurso of allRecusrso) {
+      let tipoRecurso = await this.getTipoRecuso(recurso.idTRecurso);
+      respuesta[recurso.idRecurso] = {
+        nombre: recurso.nombre,
+        idRecurso: recurso.idRecurso,
+        descripcion: tipoRecurso.descripcion,
+        nombreTipo: tipoRecurso.nombre,
+        horEntSem: tipoRecurso.horEntSem,
+        horFinSem: tipoRecurso.horFinSem,
+      };
+    }
+    console.log(respuesta);
+    return respuesta;
+  }
+
+  async getTipoRecuso(id) {
+    return await this.models.getTipoRecursoModel().getById(id);
+  }
+
   async createRecurso({ caracteristicas, idRecurso, nombre, prestado }) {
     return await this.models
       .getRecursoModel()
