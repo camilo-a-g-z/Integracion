@@ -1,5 +1,5 @@
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 /**
  *  caracteristicas{
         personas : string
@@ -10,15 +10,16 @@ import { collection, getDocs } from "firebase/firestore";
  */
 
 export class RecursoModel {
-    static async create({ caracteristicas, idRecurso, nombre, prestado }) {
-        const recurso = await db.collection("Recurso").add({
-            caracteristicas,
+    static async create({ idRecurso, nombre, caracteristicas, idTRecurso }) {
+        const recurso = await setDoc(doc(db, "Recurso", idRecurso), {
             idRecurso,
             nombre,
-            prestado
+            caracteristicas,
+            prestado:false,
+            idTRecurso
         });
 
-        return recurso.id;
+        return recurso;
     }
 
     static async getAll() {
