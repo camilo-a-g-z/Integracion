@@ -15,24 +15,24 @@
   nombre: string,
  */
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 
 export class TipoRecursoModel {
   static async create({
-    caracteristicas,
+    idTRecurso,
+    nombre,
     descripcion,
     horEntSem,
     horFinSem,
-    idTRecurso,
-    nombre,
+    idUnidad
   }) {
-    const tipoRecurso = await db.collection("TipoRecurso").add({
-      caracteristicas,
+    const tipoRecurso = await setDoc(doc(db, "TipoRecurso", idTRecurso), {
+      idTRecurso,
+      nombre,
       descripcion,
       horEntSem,
       horFinSem,
-      idTRecurso,
-      nombre,
+      idUnidad
     });
 
     return tipoRecurso.id;

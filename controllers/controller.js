@@ -61,10 +61,10 @@ export class Controller {
     this.models = new Models();
   }
 
-  async createRecurso({ caracteristicas, idRecurso, nombre, prestado }) {
+  async createRecurso({ idRecurso, nombre, caracteristicas, idTRecurso }) {
     return await this.models
       .getRecursoModel()
-      .create({ caracteristicas, idRecurso, nombre, prestado });
+      .create({ idRecurso, nombre, caracteristicas, idTRecurso });
   }
 
   async createReserva({ dia, horario, idReserva }) {
@@ -134,5 +134,17 @@ export class Controller {
   }
   async getAllTipoRecursos() {
     return await this.models.getTipoRecursoModel().getAll();
+  }
+
+  async createTipoRecurso({ idTRecurso, nombre, descripcion, horEntSem, horFinSem, idUnidad }) {
+    return await this.models
+    .getTipoRecursoModel()
+    .create({ idTRecurso, nombre, descripcion, horEntSem, horFinSem, idUnidad });
+  }
+
+  async createRecursoIntegracion({ idRecurso, nombre, caracteristicas, idTRecurso }) {
+    return await this.models
+      .getRecursoModel()
+      .create({ idRecurso, nombre, caracteristicas, idTRecurso });
   }
 }

@@ -57,6 +57,7 @@ Id:””
 
 import { Router } from "express";
 import { Controller } from "../controllers/controller.js";
+import { validarRecurso } from "../schemas/recursoSchema.js";
 
 export const routes = ({ model } = {}) => {
     const router = Router();
@@ -85,5 +86,29 @@ export const routes = ({ model } = {}) => {
         const unidades = await controller.getAllUnidades();
         res.json(unidades);
     });
+    router.post("/postIntegracion", async (req, res) => {
+        const idRecurso = req.body.datos.data[0].id
+        const nombre = req.body.datos.data[0].nombre
+        const caracteristicas = {
+          "descripcion": req.body.datos.data[0].descripcion,
+          "capacidad": req.body.datos.data[0].capacidad,
+          "ubicacion": req.body.datos.data[0].ubicacion
+        }
+        const idTRecurso = req.body.datos.data[0].idTRecurso
+
+        const result = validarRecurso({ idRecurso, nombre, caracteristicas, idTRecurso })
+        if (result.error) {
+          return res
+            .status(400)
+            .json({ message: JSON.parse(result.error.message) })
+        }
+
+        const recurso = await controller.createRecursoIntegracion({ idRecurso, nombre, caracteristicas, idTRecurso })
+        res.status(200).json({ Registro:"Ok"});
+    });
+    router.get("/getIntegracion/:idRecurso", async (req,res) => {
+      const recurso = await controller.getRecursoById(req.params.idRecurso)
+      res.json(recurso)
+    })
     return router;
 }
