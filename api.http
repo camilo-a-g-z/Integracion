@@ -1,6 +1,6 @@
 ###Este archivo permite realizar pruebas de la API de integracion
 
-GET http://localhost:3000/integracion
+#GET http://localhost:3000/integracion
 #GET http://localhost:3000/reservas
 
 #GET http://localhost:3000/users
@@ -22,7 +22,7 @@ Content-Type: application/json
         "entidad": "espacios", 
         "data": [ 
             { 
-                "id": "1", 
+                "id": "2", 
                 "nombre": "Aula 101", 
                 "descripcion": "Aula con capacidad para 30 personas", 
                 "capacidad": "30", 
