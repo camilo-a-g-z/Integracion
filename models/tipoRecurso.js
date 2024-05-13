@@ -15,7 +15,7 @@
   nombre: string,
  */
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 
 export class TipoRecursoModel {
   static async create({
@@ -57,12 +57,9 @@ export class TipoRecursoModel {
     );
   }
 
-  static async getById(idTRecurso) {
-    const tipoRecursos = await TipoRecursoModel.getAll();
-    return (
-      tipoRecursos.find(
-        (tipoRecurso) => tipoRecurso.idTRecurso === idTRecurso
-      ) ?? null
-    );
+  static async getById(idColeccion) {
+    const tipoRecursos = await getDoc(doc(db, "TipoRecurso", idColeccion));
+    console.log(tipoRecursos.data());
+    return tipoRecursos.data();
   }
 }

@@ -82,7 +82,8 @@ export class Controller {
   async integracionConsultaID(id) {
     let recurso = await this.getRecursoById(id);
     let tipoRecurso = await this.getTipoRecuso(recurso.idTRecurso);
-    let respuesta = {
+    console.log(tipoRecurso);
+    let respuesta = { 
       nombre: recurso.nombre,
       idRecurso: recurso.idRecurso,
       descripcion: tipoRecurso.descripcion,

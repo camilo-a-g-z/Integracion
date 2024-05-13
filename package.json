@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "dev": "cross-env NODE_ENV=development node --watch app.js"
+    "dev": "node --watch app.js"
   },
   "keywords": [],
   "author": "",

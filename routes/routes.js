@@ -113,6 +113,6 @@ export const routes = ({ model } = {}) => {
     router.get("/integracion/:idRecurso", async (req,res) => {
       const recurso = await controller.integracionConsultaID(req.params.idRecurso)
       res.json(recurso)
-    })
+    });
     return router;
 }
