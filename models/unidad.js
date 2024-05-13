@@ -12,7 +12,7 @@
   tMinPrestamo: string;
  */
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc } from "firebase/firestore";
 
 export class UnidadModel {
   static async create({
@@ -51,7 +51,7 @@ export class UnidadModel {
   }
 
   static async getById(idUnidad) {
-    const unidades = await UnidadModel.getAll();
-    return unidades.find((unidad) => unidad.idUnidad === idUnidad) ?? null;
+    const unidades = await getDoc(doc(db, "Unidad", idUnidad));
+    return unidades.data();
   }
 }

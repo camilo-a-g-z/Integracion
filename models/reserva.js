@@ -7,7 +7,7 @@
   idReserva: string;
  */
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc } from "firebase/firestore";
 
 export class ReservaModel {
     static async create({ dia, horario, idReserva }) {
@@ -34,7 +34,7 @@ export class ReservaModel {
     }
 
     static async getById(idReserva) {
-        const reservas = await ReservaModel.getAll();
-        return reservas.find((reserva) => reserva.idReserva === idReserva) ?? null;
+        const reservas = await getDoc(doc(db, "Reserva", idReserva));
+        return reservas.data();
     }
 }

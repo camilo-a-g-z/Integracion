@@ -4,7 +4,7 @@
   idDevolucion: string;
  */
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc } from "firebase/firestore";
 
 
 export class PrestamoModel {
@@ -32,7 +32,7 @@ export class PrestamoModel {
     }
 
     static async getById(idPrestamo) {
-        const prestamos = await PrestamoModel.getAll();
-        return prestamos.find((prestamo) => prestamo.idPrestamo === idPrestamo) ?? null;
+        const prestamos = await getDoc(doc(db, "Prestamo", idPrestamo));
+        return prestamos.data();
     }
 }

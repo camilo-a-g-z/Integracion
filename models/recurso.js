@@ -1,5 +1,5 @@
 import { db } from "../config/conf_firebase.js";
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 /**
  *  caracteristicas{
         personas : string
@@ -41,8 +41,8 @@ export class RecursoModel {
     }
 
     static async getById(idRecurso) {
-        const recursos = await RecursoModel.getAll();
-        return recursos.find((recurso) => recurso.idRecurso === idRecurso) ?? null;
+        const recursos = await getDoc(doc(db, "Recurso", idRecurso));
+        return recursos.data();
     }
 }
     
