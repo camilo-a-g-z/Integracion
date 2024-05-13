@@ -5,7 +5,9 @@
 
 #GET http://localhost:3000/users
 
-GET http://localhost:3000/integracion/5yYeI0txxbdic0sJ2hby
+#GET http://localhost:3000/integracion/5yYeI0txxbdic0sJ2hby
+
+GET http://localhost:3000/ClienteIntegracion
 
 POST http://localhost:3000/postIntegracion
 Content-Type: application/json

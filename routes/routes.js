@@ -57,6 +57,8 @@ Id:””
 import { Router } from "express";
 import { Controller } from "../controllers/controller.js";
 import { validarRecurso } from "../schemas/recursoSchema.js";
+import { request } from "express";
+import  Axios  from "axios";
 
 export const routes = ({ model } = {}) => {
   const router = Router();
@@ -126,5 +128,212 @@ export const routes = ({ model } = {}) => {
     );
     res.json(recurso);
   });
+
+  router.get("/ClienteIntegracion", async (req, res) => {
+    //181.143.186.147:8081/recursos/listar
+    //Token: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsb3NjaW5jb0Bsb3NjaW5jby5jb20iLCJleHAiOjE3MTgyMjI1ODYsIm5vbWJyZSI6IkxvcyBDaW5jbyJ9.3x7shRc7NbdrXHgf_lTO9Ryh5w9PwtVLeLc2ZfjrPGpwnamkSTEvL-ObwWpc7Q4xeS1CkgEO48a8hxAW7861fw
+    let url = "http://181.143.186.147:8081/recursos/listar";
+    let token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsb3NjaW5jb0Bsb3NjaW5jby5jb20iLCJleHAiOjE3MTgyMjI1ODYsIm5vbWJyZSI6IkxvcyBDaW5jbyJ9.3x7shRc7NbdrXHgf_lTO9Ryh5w9PwtVLeLc2ZfjrPGpwnamkSTEvL-ObwWpc7Q4xeS1CkgEO48a8hxAW7861fw"
+    const response = await Axios.get(url, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    //Se obtiene el siguiente JSON
+    /**
+     * [
+  {
+    "id": 1,
+    "nombre": "Sala computo piso 11",
+    "descripcion": "",
+    "imageUrl": "",
+    "unidad": {
+      "id": 1,
+      "nombre": "Unidad A",
+      "tipo": "Tipo 1",
+      "tiempoMinimo": 60,
+      "tiempoMaximo": 120,
+      "horaInicio": "06:00:00",
+      "horaFinal": "18:00:00",
+      "diasDisponibles": [
+        {
+          "id": 1,
+          "nombre": "Lunes"
+        },
+        {
+          "id": 2,
+          "nombre": "Martes"
+        },
+        {
+          "id": 3,
+          "nombre": "Miércoles"
+        },
+        {
+          "id": 4,
+          "nombre": "Jueves"
+        },
+        {
+          "id": 5,
+          "nombre": "Viernes"
+        },
+        {
+          "id": 6,
+          "nombre": "Sábado"
+        }
+      ]
+    },
+    "horarioDisponible": [
+      {
+        "id": 1,
+        "dia": {
+          "id": 1,
+          "nombre": "Lunes"
+        },
+        "horaInicio": "08:00",
+        "horaFin": "18:00"
+      },
+      {
+        "id": 2,
+        "dia": {
+          "id": 2,
+          "nombre": "Martes"
+        },
+        "horaInicio": "10:30",
+        "horaFin": "12:00"
+      },
+      {
+        "id": 3,
+        "dia": {
+          "id": 3,
+          "nombre": "Miércoles"
+        },
+        "horaInicio": "10:30",
+        "horaFin": "12:00"
+      },
+      {
+        "id": 4,
+        "dia": {
+          "id": 4,
+          "nombre": "Jueves"
+        },
+        "horaInicio": "10:30",
+        "horaFin": "12:00"
+      },
+      {
+        "id": 5,
+        "dia": {
+          "id": 5,
+          "nombre": "Viernes"
+        },
+        "horaInicio": "10:30",
+        "horaFin": "12:00"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Sala de conferencias",
+    "descripcion": "Espacio amplio para reuniones y presentaciones.",
+    "imageUrl": "https://example.com/sala-conferencias.jpg",
+    "unidad": {
+      "id": 1,
+      "nombre": "Unidad A",
+      "tipo": "Tipo 1",
+      "tiempoMinimo": 60,
+      "tiempoMaximo": 120,
+      "horaInicio": "06:00:00",
+      "horaFinal": "18:00:00",
+      "diasDisponibles": [
+        {
+          "id": 1,
+          "nombre": "Lunes"
+        },
+        {
+          "id": 2,
+          "nombre": "Martes"
+        },
+        {
+          "id": 3,
+          "nombre": "Miércoles"
+        },
+        {
+          "id": 4,
+          "nombre": "Jueves"
+        },
+        {
+          "id": 5,
+          "nombre": "Viernes"
+        },
+        {
+          "id": 6,
+          "nombre": "Sábado"
+        }
+      ]
+    },
+    "horarioDisponible": [
+      {
+        "id": 6,
+        "dia": {
+          "id": 2,
+          "nombre": "Martes"
+        },
+        "horaInicio": "09:00",
+        "horaFin": "17:00"
+      },
+      {
+        "id": 7,
+        "dia": {
+          "id": 4,
+          "nombre": "Jueves"
+        },
+        "horaInicio": "10:30",
+        "horaFin": "12:00"
+      },
+      {
+        "id": 8,
+        "dia": {
+          "id": 5,
+          "nombre": "Viernes"
+        },
+        "horaInicio": "13:00",
+        "horaFin": "18:00"
+      }
+    ]
+  }
+]
+     */
+    //transformar el JSON al formato de la integracion
+    let integracion = [];
+    response.data.forEach((element) => {
+      let recurso = {
+        plataforma: "CompañeroPlataforma",
+        tipo: "intercambio",
+        datos: {
+          operacion: "sincronizar",
+          entidad: "espacios",
+          data: [
+            {
+              id: element.id,
+              nombre: element.nombre,
+              descripcion: element.descripcion,
+              capacidad: element.capacidad,
+              tipo: "aula",
+              ubicacion: element.unidad.nombre,
+              horario_disponibilidad: element.horarioDisponible.map((dia) => {
+                return {
+                  dia: dia.dia.nombre,
+                  hora_inicio: dia.horaInicio,
+                  hora_fin: dia.horaFin,
+                };
+              }),
+            },
+          ],
+        },
+      };
+      integracion.push(recurso);
+    });
+    res.json(integracion);
+  });
+
   return router;
 };
