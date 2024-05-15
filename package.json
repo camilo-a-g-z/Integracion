@@ -24,18 +24,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
     "dev": "node --watch app.js",
-    "builds": [
-      {
-       "src": "app.js",
-       "use": "@vercel/node"
-      }
-     ],
-     "routes": [
-      {
-       "src": "/(.*)",
-       "dest": "app.js"
-      }
-     ]
+    "builds": "node app.js"
   },
   "keywords": [],
   "author": "",
