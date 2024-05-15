@@ -63,6 +63,9 @@ import  Axios  from "axios";
 export const routes = ({ model } = {}) => {
   const router = Router();
   const controller = new Controller({ model });
+  router.get("/", (req, res) => {
+    res.send("Integración grupo los 5 - 420");
+  });
   router.get("/integracion", async (req, res) => {
     const integracion = await controller.integracionConsulta();
     res.json(integracion);
