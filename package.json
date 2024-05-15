@@ -24,7 +24,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
     "dev": "node --watch app.js",
-    "builds": "node app.js"
+    "builds": "node app.js" 
   },
   "keywords": [],
   "author": "",
