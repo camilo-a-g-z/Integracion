@@ -24,14 +24,14 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
     "dev": "node --watch app.js",
-    "builds": "node app.js" 
+    "builds": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.8",
-    "cors": "2.8.5",
+    "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "firebase": "^10.11.0",

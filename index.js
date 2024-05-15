@@ -1,12 +1,14 @@
 import express, { json } from "express";
 //import { corsMiddleware } from "./middlewares/cors.js";
 import { routes } from "./routes/routes.js";
+import cors from "cors";
 export const createApp = ({model}) => {
   const app = express();
 
   app.use(json());
   //app.use(corsMiddleware);
   app.disable("x-powered-by");
+  app.use(cors());
 
   app.use("/", routes(model));
 
