@@ -4,6 +4,9 @@ import { Models } from "../models/models.js";
 const supertest = require('supertest')
 //const api = supertest(app)
 const datosPrueba = require('./test_helper').datos
+const recursoIntegracion = require('./test_helper.js').recursoIntegracion
+const datosIntegracionCliente = require('./test_helper.js').datosIntegracionCliente
+
 
 let app, server, api;
 
@@ -33,8 +36,26 @@ describe('Añadir un recurso en la integracion', () => {
       .expect('Content-Type', /application\/json/)
   }, 10000)
 
+  test('Se consulta el recurso agregado mediante el ID', async () => {
+
+    const respuesta = await api.get('/integracion/99');
+    expect(respuesta.status).toBe(200);
+    expect(respuesta.type).toMatch(/json/);
+    expect(respuesta.body).toEqual(recursoIntegracion);
+  }, 10000)
+
 })
 
+
+describe('Obtener recursos del cliente en la integracion', () => {
+  test('Se consultan los recursos del cliente de la integracion', async () => {
+    const respuesta = await api.get('/ClienteIntegracion');
+    expect(respuesta.status).toBe(200);
+    expect(respuesta.type).toMatch(/json/);
+    expect(respuesta.body).toEqual(datosIntegracionCliente);
+  }, 10000)
+
+})
 
 afterAll(() => {
   // Cerrar el servidor después de todas las pruebas

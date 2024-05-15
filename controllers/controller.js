@@ -75,14 +75,14 @@ export class Controller {
         horFinSem: tipoRecurso.horFinSem,
       };
     }
-    console.log(respuesta);
+    //console.log(respuesta);
     return respuesta;
   }
 
   async integracionConsultaID(id) {
     let recurso = await this.getRecursoById(id);
     let tipoRecurso = await this.getTipoRecuso(recurso.idTRecurso);
-    console.log(tipoRecurso);
+    //console.log(tipoRecurso);
     let respuesta = { 
       nombre: recurso.nombre,
       idRecurso: recurso.idRecurso,
@@ -91,7 +91,7 @@ export class Controller {
       horEntSem: tipoRecurso.horEntSem,
       horFinSem: tipoRecurso.horFinSem,
     };
-    console.log(respuesta);
+    //console.log(respuesta);
     return respuesta;
   }
 

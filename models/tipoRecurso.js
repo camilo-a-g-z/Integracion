@@ -59,7 +59,7 @@ export class TipoRecursoModel {
 
   static async getById(idColeccion) {
     const tipoRecursos = await getDoc(doc(db, "TipoRecurso", idColeccion));
-    console.log(tipoRecursos.data());
+    //console.log(tipoRecursos.data());
     return tipoRecursos.data();
   }
 }

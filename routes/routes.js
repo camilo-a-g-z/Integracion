@@ -95,7 +95,7 @@ export const routes = ({ model } = {}) => {
     res.json(unidades);
   });
   router.post("/postIntegracion", async (req, res) => {
-    console.log(req.body); 
+    //console.log(req.body); 
     const idRecurso = req.body.datos.data[0].id;
     const nombre = req.body.datos.data[0].nombre;
     const caracteristicas = {
