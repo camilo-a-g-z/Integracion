@@ -26,9 +26,17 @@
     "dev": "node --watch app.js",
     "builds": [
       {
-        "src": "app.js"
+       "src": "app.js",
+       "use": "@vercel/node",
+       "config": { "includeFiles": ["dist/**"] }
       }
-    ]
+     ],
+     "routes": [
+      {
+       "src": "/(.*)",
+       "dest": "app.js"
+      }
+     ]
   },
   "keywords": [],
   "author": "",
