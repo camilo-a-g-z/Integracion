@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "dev": "node --watch app.js"
+    "dev": "node --watch app.js",
+    "build": "babel app.js --out-file app-compiled.js"
   },
   "keywords": [],
   "author": "",
